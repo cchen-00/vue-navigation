@@ -1,7 +1,19 @@
 <template>
-  <div>
-    <NavBar class="hidden md:block" />
+  <div class="bg-svg">
+    <NavBarDesktop class="hidden md:block" />
     <NavBarMobile class="block md:hidden" />
-    <slot />
+    <div class="px-2 py-8">
+      <slot />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.bg-svg {
+  background: url("/background.svg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
