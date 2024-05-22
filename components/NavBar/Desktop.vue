@@ -7,8 +7,9 @@ const activeIndex = ref(-1);
 const highlightLeft = ref(0);
 const ulRef: Ref<HTMLElement | null> = ref(null);
 const isMouseOverMenu = ref(false);
+const { isTop } = useScrollPosition();
 
-const handleClickMenuItem = (item: MenuItem, index: Number) => {
+const handleClickMenuItem = (item: MenuItem, index: number) => {
   if (item.items.length === 0) {
     navigateTo(item.url);
     return;
@@ -30,21 +31,21 @@ const handleCloseMenu = () => {
   isMouseOverMenu.value = false;
 };
 
-const beforeEnter = (el: Element) => {
+const setInitialHeightBeforeEnter = (el: Element) => {
   (el as HTMLElement).style.height = "0";
 };
 
-const enter = (el: Element) => {
+const setHeightOnEnter = (el: Element) => {
   (el as HTMLElement).style.height = el.scrollHeight + "px";
 };
 
-const handleMouseOver = (event: MouseEvent, index: Number) => {
+const handleMouseOver = (event: MouseEvent, index: number) => {
   isMouseOverMenu.value = true;
   highlightLeft.value = getHighlightLeft(event);
   handleMouseOverMenuItem(index);
 };
 
-const handleMouseOverMenuItem = (index: Number) => {
+const handleMouseOverMenuItem = (index: number) => {
   activeIndex.value = index as number;
 };
 
@@ -58,12 +59,19 @@ const getHighlightLeft = (event: MouseEvent) => {
   const ulRect = ulRef.value?.getBoundingClientRect();
   return ulRect ? targetRect.left - ulRect.left : 0;
 };
+
+const isHighlightItem = computed(
+  () => (item: MenuItem) => route.path.startsWith(item.url)
+);
 </script>
 
 <template>
   <div class="sticky z-10 top-0 px-2 pt-2 bg-svg">
     <div class="border-t-4 border-primary pt-1"></div>
-    <div class="h-[110px] flex">
+    <div
+      class="flex transition-all duration-400 ease-in-out overflow-hidden"
+      :class="isTop ? 'h-[120px]' : 'h-0'"
+    >
       <div class="pt-4">
         <NuxtLink to="/">
           <img src="/logo.png" alt="Visit San Francisco Logo" width="620px" />
@@ -73,14 +81,16 @@ const getHighlightLeft = (event: MouseEvent) => {
     <header
       class="flex justify-between items-center space-x-1 border-b-2 border-t-2 border-primary"
     >
-      <!--  <NuxtLink to="/">
-         <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" /> 
-          </NuxtLink> -->
       <p
+        v-if="isTop"
         class="flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-nowrap cursor-pointer underline text-secondary"
       >
         Top 20 Attractions in San Francisco
       </p>
+      <NuxtLink v-else to="/">
+        <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" />
+      </NuxtLink>
+
       <nav>
         <ul
           ref="ulRef"
@@ -99,19 +109,23 @@ const getHighlightLeft = (event: MouseEvent) => {
             :key="item.title"
             class="relative py-1 group w-[130px]"
             :class="{
-              'highlight-item': route.path.startsWith(item.url),
+              'highlight-item': isHighlightItem(item),
             }"
             @mouseleave="handleCloseMenu"
             @mouseover="handleMouseOver($event, index)"
           >
             <a
               :href="item.url"
-              class="relative flex items-center justify-center border-s-2 border-primary text-primary cursor-pointer"
+              class="relative py-1.5 flex items-center justify-center border-s-2 border-primary text-primary cursor-pointer"
               @click.prevent="handleClickMenuItem(item, index)"
             >
               {{ item.title }}
             </a>
-            <transition name="slide" @before-enter="beforeEnter" @enter="enter">
+            <transition
+              name="slide"
+              @before-enter="setInitialHeightBeforeEnter"
+              @enter="setHeightOnEnter"
+            >
               <ul
                 v-if="item.items.length > 0 && index === activeIndex"
                 ref="menu"
@@ -149,7 +163,7 @@ const getHighlightLeft = (event: MouseEvent) => {
 }
 
 .highlight-item:after {
-  @apply absolute bottom-0 w-4/5 h-0.5 bg-secondary;
+  @apply absolute bottom-0 w-4/5 h-1 bg-secondary;
   content: "";
   left: 10%;
 }
