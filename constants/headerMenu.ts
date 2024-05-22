@@ -27,7 +27,6 @@ export const HEADER_MENU: MenuItem[] = [
       { title: "Restaurants", url: "/restaurants" },
       { title: "Bars & Pubs", url: "/bars-pubs" },
       { title: "Cafes", url: "/cafes" },
-      { title: "Food Markets", url: "/food-markets" },
     ],
   },
   {
@@ -42,13 +41,6 @@ export const HEADER_MENU: MenuItem[] = [
   {
     title: "Plan your trip",
     url: "/plan",
-    items: [
-      // { title: "Transportation", url: "/transportation" },
-      // { title: "Attraction Passes", url: "/attraction-passes" },
-      // { title: "Buy Tickets", url: "/buy-tickets" },
-      // { title: "Travel Guides", url: "/travel-guides" },
-      // { title: "Weather", url: "/weather" },
-      // { title: "Visitor's Guide", url: "/guides" },
-    ],
+    items: [],
   },
 ];
