@@ -28,18 +28,6 @@ const handleClickMenuItem = (item: MenuItem, index: number) => {
   }
 };
 
-const setInitialHeightBeforeEnter = (el: Element) => {
-  (el as HTMLElement).style.height = "0";
-};
-
-const setHeightOnEnter = (el: Element) => {
-  (el as HTMLElement).style.height = el.scrollHeight + "px";
-};
-
-const setHeightBeforeLeave = (el: Element) => {
-  (el as HTMLElement).style.height = "0";
-};
-
 const isHighlightItem = computed(
   () => (item: MenuItem) => route.path.startsWith(item.url)
 );
@@ -70,11 +58,11 @@ const isHighlightItem = computed(
         <li
           v-for="(item, index) in HEADER_MENU"
           :key="item.title"
-          class="relative py-3 ps-4 group w-full border-b-2 border-primary cursor-pointer"
-          @click.prevent="handleClickMenuItem(item, index)"
+          class="relative py-3 ps-4 group w-full border-b-2 border-primary"
         >
           <a
             :href="item.url"
+            @click.prevent="handleClickMenuItem(item, index)"
             class="relative text-2xl text-primary"
             :class="{
               'border-b-4 border-secondary': isHighlightItem(item),
@@ -83,39 +71,14 @@ const isHighlightItem = computed(
             {{ item.title }}
             <span v-if="item.items.length > 0">+</span>
           </a>
-          <transition
-            name="slide"
-            @before-enter="setInitialHeightBeforeEnter"
-            @enter="setHeightOnEnter"
-            @leave="setHeightBeforeLeave"
-          >
-            <ul
-              v-show="
-                item.items.length > 0 &&
-                (index === activeIndex || $route.path.startsWith(item.url))
-              "
-              ref="menu"
-              class="my-4 ms-5 z-0 left-0 space-y-2 overflow-hidden border-s-2 border-primary w-5/6"
-            >
-              <li
-                v-for="subitem in item.items"
-                :key="subitem.title"
-                class="ps-4"
-              >
-                <NuxtLink
-                  :to="`${item.url}${subitem.url}`"
-                  @click="handleCloseMenu"
-                  class="cursor-pointer"
-                  :class="{
-                    'border-b-4 border-secondary text-primary':
-                      $route.path === `${item.url}${subitem.url}`,
-                  }"
-                >
-                  {{ subitem.title }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </transition>
+          
+          <NavBarMobileSubMenu
+            v-if="item.items.length > 0"
+            :item="item"
+            :index="index"
+            :activeIndex="activeIndex"
+            @closeMenu="handleCloseMenu"
+          />
         </li>
       </ul>
     </nav>
@@ -130,14 +93,5 @@ const isHighlightItem = computed(
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.slide-enter-active {
-  transition: height 0.3s ease-in-out;
-}
-
-.slide-enter-to,
-.slide-leave-active {
-  transition: height 0.3s ease-in-out;
 }
 </style>
