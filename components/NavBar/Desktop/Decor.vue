@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const dateString = ref("");
+
+onMounted(() => {
+  dateString.value = new Date().toLocaleDateString();
+});
+</script>
+
 <template>
   <div class="w-full flex py-1.5">
     <div class="pt-4">
@@ -5,13 +13,15 @@
         <img src="/logo.png" alt="Visit San Francisco Logo" width="620px" />
       </NuxtLink>
     </div>
+
     <div class="mx-3 flex-grow overflow-hidden city-img"></div>
+
     <div class="flex flex-col">
       <p class="text-neutral-600 text-lg mb-1 font-black text-right">
-        {{ new Date().toLocaleDateString() }}
+        {{ dateString }}
       </p>
       <div
-        class="min-w-[148px] flex-grow border-neutral-400 border-dashed border-2"
+        class="min-w-[148px] flex-grow border-neutral-400 border-dashed border-2 text-right"
       >
         <p
           class="font-serif font-black text-2xl leading-6 text-neutral-500 scale-[90%]"
@@ -19,9 +29,7 @@
           Travel more, <br />
           spend less.
         </p>
-        <p class="font-serif text-1xl leading-5 ms-2 text-secondary">
-          Limited offers!
-        </p>
+        <p class="font-serif leading-5 me-2 text-secondary">Limited offers!</p>
       </div>
     </div>
   </div>

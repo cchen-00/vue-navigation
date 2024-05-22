@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const isOpen = ref(false);
+
+const openMenu = () => {
+  isOpen.value = true;
+};
+const closeMenu = () => {
+  isOpen.value = false;
+};
+</script>
+
 <template>
   <div class="sticky z-10 top-0 px-2 pt-2 bg-svg">
     <div class="border-t-4 border-primary pt-1"></div>
@@ -5,7 +16,7 @@
       class="py-2 flex justify-between items-center space-x-1 border-b-2 border-t-2 border-primary"
     >
       <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" />
-      <button class="h-[36px] border-s-2 ps-3 border-primary">
+      <button class="h-[36px] border-s-2 ps-3 border-primary" @click="openMenu">
         <svg
           class="w-8 h-8 text-primary"
           fill="none"
@@ -21,6 +32,7 @@
           ></path>
         </svg>
       </button>
+      <NavBarMobileMenu :isOpen="isOpen" @closeMenu="closeMenu" />
     </header>
   </div>
 </template>
