@@ -72,11 +72,7 @@ const isHighlightItem = computed(
       class="flex transition-all duration-400 ease-in-out overflow-hidden"
       :class="isTop ? 'h-[120px]' : 'h-0'"
     >
-      <div class="pt-4">
-        <NuxtLink to="/">
-          <img src="/logo.png" alt="Visit San Francisco Logo" width="620px" />
-        </NuxtLink>
-      </div>
+      <NavBarDesktopDecor />
     </div>
     <header
       class="flex justify-between items-center space-x-1 border-b-2 border-t-2 border-primary"
