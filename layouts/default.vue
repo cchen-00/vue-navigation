@@ -2,7 +2,7 @@
   <div class="bg-svg">
     <NavBarDesktop class="hidden md:block" />
     <NavBarMobile class="block md:hidden" />
-    <div class="px-2 py-8">
+    <div class="px-2 py-8 h-[2000px]">
       <slot />
     </div>
   </div>
