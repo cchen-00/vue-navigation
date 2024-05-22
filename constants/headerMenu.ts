@@ -3,7 +3,7 @@ import type { MenuItem } from "@/types/menuTypes";
 export const HEADER_MENU: MenuItem[] = [
   {
     title: "Welcome",
-    url: "/",
+    url: "/welcome",
     items: [],
   },
   {

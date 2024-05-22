@@ -4,7 +4,7 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        primary: "#404040", // primary
+        primary: "#262626", // neutral-800
         secondary: "#c2410c", // orange-700
       },
       fontFamily: {
