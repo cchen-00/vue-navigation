@@ -43,7 +43,7 @@ const isHighlightItem = computed(
       class="absolute top-0 right-0 w-4/5 h-screen pb-36 z-10 border-4 border-primary menu-bg overflow-auto"
     >
       <div
-        class="sticky z-10 top-0 py-3 border-b-2 border-primary flex justify-end menu-bg"
+        class="sticky z-10 top-0 py-3 border-b-2 border-primary flex justify-end"
       >
         <button
           class="h-[56px] w-[56px] border-s-2 border-primary"
@@ -71,7 +71,7 @@ const isHighlightItem = computed(
             <span v-if="item.items.length > 0">+</span>
           </a>
 
-          <NavBarMobileSubMenu
+          <NavBarSubMenu
             v-if="item.items.length > 0"
             :item="item"
             :index="index"

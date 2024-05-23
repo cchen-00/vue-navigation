@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuItem, MenuSubItem } from "@/types/menuTypes";
+import type { MenuItem } from "@/types/menuTypes";
 import { HEADER_MENU } from "~/constants/headerMenu";
 
 const route = useRoute();
@@ -20,32 +20,15 @@ const handleClickMenuItem = (item: MenuItem, index: number) => {
   }
 };
 
-const handleClickSubMenu = (item: MenuItem, subitem: MenuSubItem) => {
-  navigateTo(`${item.url}${subitem.url}`);
-  handleCloseMenu();
-};
-
 const handleCloseMenu = () => {
   activeIndex.value = -1;
   isMouseOverMenu.value = false;
 };
 
-const setInitialHeightBeforeEnter = (el: Element) => {
-  (el as HTMLElement).style.height = "0";
-};
-
-const setHeightOnEnter = (el: Element) => {
-  (el as HTMLElement).style.height = el.scrollHeight + "px";
-};
-
 const handleMouseOver = (event: MouseEvent, index: number) => {
+  activeIndex.value = index;
   isMouseOverMenu.value = true;
   highlightLeft.value = getHighlightLeft(event);
-  handleMouseOverMenuItem(index);
-};
-
-const handleMouseOverMenuItem = (index: number) => {
-  activeIndex.value = index as number;
 };
 
 const handleMouseLeaveMenu = () => {
@@ -68,7 +51,7 @@ const isHighlightItem = computed(
   <nav>
     <ul ref="ulRef" class="flex relative" @mouseleave="handleMouseLeaveMenu">
       <li
-        class="absolute bg-secondary w-[130px] h-full top-0 opacity-0 transition-all duration-500 ease-in-out"
+        class="z-0 absolute bg-secondary w-[130px] lg:w-[180px] h-full top-0 transition-all duration-500 ease-in-out"
         :style="{
           left: `${highlightLeft}px`,
           opacity: isMouseOverMenu ? 0.2 : 0,
@@ -77,7 +60,7 @@ const isHighlightItem = computed(
       <li
         v-for="(item, index) in HEADER_MENU"
         :key="item.title"
-        class="relative py-1 group w-[130px]"
+        class="relative py-1 group w-[130px] lg:w-[180px]"
         :class="{
           'highlight-item': isHighlightItem(item),
         }"
@@ -91,35 +74,14 @@ const isHighlightItem = computed(
         >
           {{ item.title }}
         </a>
-        <transition
-          name="slide"
-          @before-enter="setInitialHeightBeforeEnter"
-          @enter="setHeightOnEnter"
-        >
-          <ul
-            v-if="item.items.length > 0 && index === activeIndex"
-            ref="menu"
-            class="absolute left-0 mt-1 space-y-2 overflow-hidden border-s-2 border-b-2 border-e-2 border-primary w-full menu-dropdown"
-          >
-            <li
-              v-for="subitem in item.items"
-              :key="subitem.title"
-              class="hover:bg-secondary hover:bg-opacity-20 cursor-pointer"
-              @click.prevent="handleClickSubMenu(item, subitem)"
-            >
-              <NuxtLink
-                :to="`${item.url}${subitem.url}`"
-                class="cursor-pointer mx-2 text-sm text-primary"
-                :class="{
-                  'border-b-2 border-secondary':
-                    route.path === `${item.url}${subitem.url}`,
-                }"
-              >
-                {{ subitem.title }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </transition>
+
+        <NavBarSubMenu
+          v-if="item.items.length > 0"
+          :item="item"
+          :index="index"
+          :activeIndex="activeIndex"
+          @closeMenu="handleCloseMenu"
+        />
       </li>
     </ul>
   </nav>
@@ -131,21 +93,9 @@ const isHighlightItem = computed(
 }
 
 .highlight-item:after {
-  @apply absolute bottom-0 w-4/5 h-1 bg-secondary;
+  @apply absolute bottom-0 w-3/4 h-1 bg-secondary;
   content: "";
-  left: 10%;
-}
-
-.menu-dropdown {
-  background: url("@/assets/images/background-sm.svg");
-  background-attachment: absolute;
-  background-size: 300px 500px;
-  background-position: left top;
-}
-.menu-dropdown:before,
-.menu-dropdown:after {
-  content: "";
-  display: block;
-  height: 12px;
+  opacity: 0.8;
+  left: 12.5%;
 }
 </style>

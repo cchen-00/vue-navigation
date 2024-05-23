@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuItem } from "@/types/menuTypes";
+import type { MenuItem, MenuSubItem } from "@/types/menuTypes";
 
 const props = defineProps({
   item: Object as () => MenuItem,
@@ -23,6 +23,11 @@ const setHeightOnEnter = (el: Element) => {
 const setHeightBeforeLeave = (el: Element) => {
   (el as HTMLElement).style.height = "0";
 };
+
+const handleClickSubMenu = (item: MenuItem, subitem: MenuSubItem) => {
+  navigateTo(`${item.url}${subitem.url}`);
+  handleCloseMenu();
+};
 </script>
 
 <template>
@@ -32,18 +37,18 @@ const setHeightBeforeLeave = (el: Element) => {
     @enter="setHeightOnEnter"
     @leave="setHeightBeforeLeave"
   >
-    <ul
-      v-show="index === activeIndex"
-      ref="menu"
-      class="my-4 ms-5 z-0 left-0 space-y-2 overflow-hidden border-s-2 border-primary w-5/6"
-    >
-      <li v-for="subitem in item.items" :key="subitem.title" class="ps-4">
+    <ul v-show="index === activeIndex" ref="menu" class="menu-list">
+      <li
+        v-for="subitem in item.items"
+        :key="subitem.title"
+        class="ps-4 md:ps-2 md:hover:bg-secondary md:hover:bg-opacity-20 cursor-pointer"
+        @click.prevent="handleClickSubMenu(item, subitem)"
+      >
         <NuxtLink
           :to="`${item.url}${subitem.url}`"
-          @click="handleCloseMenu"
-          class="cursor-pointer"
+          class="cursor-pointer text-primary md:text-sm lg:text-base"
           :class="{
-            'border-b-4 border-secondary text-primary':
+            'border-b-2 border-secondary':
               $route.path === `${item.url}${subitem.url}`,
           }"
         >
@@ -62,5 +67,26 @@ const setHeightBeforeLeave = (el: Element) => {
 .slide-enter-to,
 .slide-leave-active {
   transition: height 0.3s ease-in-out;
+}
+
+.menu-list {
+  @apply z-0 left-0 space-y-2 overflow-hidden my-4 ms-5 border-s-2 border-primary w-5/6;
+}
+
+@screen md {
+  .menu-list {
+    @apply absolute mt-1 my-0 ms-0 border-b-2 border-e-2 w-full;
+    background: url("@/assets/images/background-sm.svg");
+    background-attachment: absolute;
+    background-size: 400px 600px;
+    background-position: left top;
+  }
+
+  .menu-list:before,
+  .menu-list:after {
+    content: "";
+    display: block;
+    height: 12px;
+  }
 }
 </style>
