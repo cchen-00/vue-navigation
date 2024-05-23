@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+useHead({
+  title: "Visit San Francisco",
+});
+</script>
+
 <template>
   <div class="bg-svg">
     <NavBarDesktop class="hidden md:block" />
@@ -10,7 +16,7 @@
 
 <style scoped>
 .bg-svg {
-  background: url("/background.svg") no-repeat center center fixed;
+  background: url("/background.png") no-repeat left top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

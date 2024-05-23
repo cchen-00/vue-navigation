@@ -76,10 +76,9 @@ const handleClickSubMenu = (item: MenuItem, subitem: MenuSubItem) => {
 @screen md {
   .menu-list {
     @apply absolute mt-1 my-0 ms-0 border-b-2 border-e-2 w-full;
-    background: url("@/assets/images/background-sm.svg");
+    background: url("/background.png");
     background-attachment: absolute;
-    background-size: 400px 600px;
-    background-position: left top;
+    background-position: center center;
   }
 
   .menu-list:before,

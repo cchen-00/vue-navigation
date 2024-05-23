@@ -86,8 +86,7 @@ const isHighlightItem = computed(
 
 <style scoped>
 .menu-bg {
-  background: url("@/assets/images/background-sm.svg") no-repeat center center
-    fixed;
+  background: url("/background.png") no-repeat top right fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
