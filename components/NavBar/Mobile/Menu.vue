@@ -93,6 +93,7 @@ const isHighlightItem = computed(
           />
         </li>
       </ul>
+      <div class="city-img"></div>
     </nav>
   </div>
 </template>
@@ -104,5 +105,13 @@ const isHighlightItem = computed(
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.city-img {
+  @apply fixed bottom-0 w-full h-[116px] opacity-50;
+  background: url("@/assets/images/city.png");
+  background-attachment: absolute;
+  background-size: auto 116px;
+  background-position: left bottom;
+  mix-blend-mode: multiply;
 }
 </style>
