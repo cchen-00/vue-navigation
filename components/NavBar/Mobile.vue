@@ -19,6 +19,7 @@ const closeMenu = () => {
 
       <button
         class="h-[44px] border-s-2 border-primary pe-1 ps-2"
+        aria-label="Open Menu"
         @click="openMenu"
       >
         <IconBase size="40" class="stroke-primary">

@@ -48,7 +48,7 @@ const isHighlightItem = computed(
 </script>
 
 <template>
-  <nav>
+  <nav aria-label="Main navigation">
     <ul ref="ulRef" class="flex relative" @mouseleave="handleMouseLeaveMenu">
       <li
         class="z-0 absolute bg-secondary w-[130px] lg:w-[180px] h-full top-0 transition-all duration-500 ease-in-out"
