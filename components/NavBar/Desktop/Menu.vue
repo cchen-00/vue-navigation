@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { MenuItem } from "@/types/menuTypes";
-import { HEADER_MENU } from "~/constants/headerMenu";
+import { HEADER_MENU } from "@/constants/headerMenu";
 
 const route = useRoute();
 const activeIndex = ref(-1);

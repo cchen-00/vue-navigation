@@ -11,15 +11,12 @@ const { isScrollTop } = useScrollPosition();
     >
       <NavBarDesktopDecor />
     </div>
+
     <header
       class="flex justify-between items-center space-x-1 border-b-2 border-t-2 border-primary"
     >
-      <p
-        v-if="isScrollTop"
-        class="flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-nowrap cursor-pointer underline text-secondary"
-      >
-        Top 20 Attractions in San Francisco
-      </p>
+      <NavBarAutoScrollingTitles v-if="isScrollTop" />
+
       <NuxtLink v-else to="/">
         <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" />
       </NuxtLink>
