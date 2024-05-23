@@ -20,16 +20,28 @@ onMounted(() => {
       <p class="text-neutral-600 text-lg mb-1 font-black text-right">
         {{ dateString }}
       </p>
+
       <div
-        class="min-w-[148px] flex-grow border-neutral-400 border-dashed border-2 text-right"
+        class="relative min-w-[148px] flex-grow border-neutral-400 border-dashed border-2"
       >
-        <p
-          class="font-serif font-black text-2xl leading-6 text-neutral-500 scale-[90%]"
+        <a href="/" aria-label="`Link to Limited offers">
+          <p
+            class="font-serif font-black text-2xl leading-6 text-neutral-500 scale-[90%]"
+          >
+            Travel more, <br />
+            spend less.
+          </p>
+          <p class="font-serif leading-5 ms-2 text-secondary">
+            Limited offers!
+          </p>
+        </a>
+        <IconBase
+          size="20"
+          strokeWidth="0"
+          class="absolute bottom-0 right-1 opacity-50"
         >
-          Travel more, <br />
-          spend less.
-        </p>
-        <p class="font-serif leading-5 me-2 text-secondary">Limited offers!</p>
+          <IconHalfScissor />
+        </IconBase>
       </div>
     </div>
   </div>
@@ -39,8 +51,8 @@ onMounted(() => {
 .city-img {
   background: url("@/assets/images/city.png");
   background-attachment: absolute;
-  background-size: auto 120px;
-  background-position: left top;
+  background-size: auto 116px;
+  background-position: left bottom;
   mix-blend-mode: multiply;
 }
 </style>
