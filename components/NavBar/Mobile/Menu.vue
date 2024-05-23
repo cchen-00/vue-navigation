@@ -73,7 +73,15 @@ const isHighlightItem = computed(
             }"
           >
             {{ item.title }}
-            <span v-if="item.items.length > 0">+</span>
+            <IconBase
+              v-if="item.items.length > 0"
+              class="inline-block mb-1 stroke-primary transition-all"
+              :class="{
+                'transform rotate-45': activeIndex === index,
+              }"
+            >
+              <IconPlus />
+            </IconBase>
           </a>
 
           <NavBarSubMenu

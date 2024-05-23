@@ -26,7 +26,6 @@ const props = defineProps({
     :height="size"
     viewBox="0 0 24 24"
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <slot />
   </svg>

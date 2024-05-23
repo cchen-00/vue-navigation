@@ -73,6 +73,17 @@ const isHighlightItem = computed(
           @click.prevent="handleClickMenuItem(item, index)"
         >
           {{ item.title }}
+          <IconBase
+            v-if="item.items.length > 0"
+            size="16"
+            strokeWidth="2"
+            class="inline-block ms-1 stroke-primary transition-all"
+            :class="{
+              'transform rotate-45': activeIndex === index,
+            }"
+          >
+            <IconPlus />
+          </IconBase>
         </a>
 
         <NavBarSubMenu
