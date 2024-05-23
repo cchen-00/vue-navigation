@@ -17,14 +17,14 @@ onMounted(() => {
     <div class="mx-3 flex-grow overflow-hidden city-img"></div>
 
     <div class="flex flex-col">
-      <p class="text-neutral-600 text-lg mb-1 font-black text-right">
+      <p class="h-6 text-neutral-600 text-lg mb-1 font-black text-right">
         {{ dateString }}
       </p>
 
       <div
         class="relative min-w-[148px] flex-grow border-neutral-400 border-dashed border-2"
       >
-        <a href="/" aria-label="`Link to Limited offers">
+        <a href="/" aria-label="Link to Limited offers">
           <p
             class="font-serif font-black text-2xl leading-6 text-neutral-500 scale-[90%]"
           >

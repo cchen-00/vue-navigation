@@ -3,7 +3,7 @@ const { isScrollTop } = useScrollPosition();
 </script>
 
 <template>
-  <div class="sticky z-10 top-0 px-2 pt-2 bg-svg">
+  <div class="sticky z-10 top-0 px-2 pt-2 bg-img">
     <div class="border-t-4 border-primary pt-1"></div>
     <div
       class="flex transition-all duration-400 ease-in-out overflow-hidden"

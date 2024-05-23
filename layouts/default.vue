@@ -5,17 +5,18 @@ useHead({
 </script>
 
 <template>
-  <div class="bg-svg">
+  <div class="bg-img">
     <NavBarDesktop class="hidden md:block" />
     <NavBarMobile class="block md:hidden" />
     <div class="px-2 py-8 h-[100vh]">
       <slot />
     </div>
+    <Footer />
   </div>
 </template>
 
 <style scoped>
-.bg-svg {
+.bg-img {
   background: url("/background.png") no-repeat left top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
