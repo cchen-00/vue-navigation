@@ -40,17 +40,22 @@ const isHighlightItem = computed(
   >
     <nav
       @click.stop
-      class="absolute top-0 right-0 w-4/5 h-screen pb-36 z-10 border-4 border-primary menu-bg overflow-auto"
+      class="absolute top-0 right-0 w-4/5 h-screen pb-36 pe-2 z-10 border-s-4 border-primary menu-bg overflow-auto"
     >
-      <div
-        class="sticky z-10 top-0 py-3 border-b-2 border-primary flex justify-end"
-      >
-        <button
-          class="h-[56px] w-[56px] border-s-2 border-primary"
-          @click="handleCloseMenu"
+      <div class="sticky z-10 top-0 border-b-2 menu-bg">
+        <div class="pt-2 border-b-4 border-primary"></div>
+        <div
+          class="border-t-2 py-1 mt-1 border-b-2 border-primary flex justify-end"
         >
-          X
-        </button>
+          <button
+            class="h-[44px] ps-2 pe-0 border-s-2 border-primary"
+            @click="handleCloseMenu"
+          >
+            <IconBase size="44" class="stroke-primary">
+              <IconClose />
+            </IconBase>
+          </button>
+        </div>
       </div>
 
       <ul>

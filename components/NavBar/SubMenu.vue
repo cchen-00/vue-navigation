@@ -46,7 +46,7 @@ const handleClickSubMenu = (item: MenuItem, subitem: MenuSubItem) => {
       >
         <NuxtLink
           :to="`${item.url}${subitem.url}`"
-          class="cursor-pointer text-primary md:text-sm lg:text-base"
+          class="cursor-pointer text-primary text-xl md:text-base"
           :class="{
             'border-b-2 border-secondary':
               $route.path === `${item.url}${subitem.url}`,
@@ -70,12 +70,12 @@ const handleClickSubMenu = (item: MenuItem, subitem: MenuSubItem) => {
 }
 
 .menu-list {
-  @apply z-0 left-0 space-y-2 overflow-hidden my-4 ms-5 border-s-2 border-primary w-5/6;
+  @apply z-0 left-0 space-y-2 overflow-hidden my-3 ms-5 border-s-2 border-primary w-5/6;
 }
 
 @screen md {
   .menu-list {
-    @apply absolute mt-1 my-0 ms-0 border-b-2 border-e-2 w-full;
+    @apply absolute mt-1 my-0 ms-0 border-2 w-full;
     background: url("/background.png");
     background-attachment: absolute;
     background-position: center center;

@@ -69,7 +69,7 @@ const isHighlightItem = computed(
       >
         <a
           :href="item.url"
-          class="relative py-1.5 flex items-center justify-center border-s-2 border-primary text-primary cursor-pointer"
+          class="relative py-1.5 flex items-center justify-center border-s-2 border-primary text-primary cursor-pointer text-base"
           @click.prevent="handleClickMenuItem(item, index)"
         >
           {{ item.title }}
