@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
 import type { MenuItem } from "@/types/menuTypes";
 import { HEADER_MENU } from "~/constants/headerMenu";
 const route = useRoute();
@@ -71,7 +70,7 @@ const isHighlightItem = computed(
             {{ item.title }}
             <span v-if="item.items.length > 0">+</span>
           </a>
-          
+
           <NavBarMobileSubMenu
             v-if="item.items.length > 0"
             :item="item"
