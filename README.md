@@ -1,12 +1,13 @@
 # <img src="/public/favicon.ico" width="24" alt="Logo" /> Visit San Francisco - Navigation menu
-[![Site preview](/public/site-preview.png)](https://ember-chen.site)
+[![Site preview](/public/site-preview.png)](https://vue-navigation.onrender.com/)
 
-A small navigation menu project, to gain experience of [Vue 3](https://vuejs.org/), [Nuxt 3](https://nuxt.com/), [TypeScript](https://www.typescriptlang.org/) and [Tailwind CSS](https://tailwindcss.com/).
+A small navigation menu project, to gain experience with [Vue 3](https://vuejs.org/), [Nuxt 3](https://nuxt.com/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com/).
 
 View the live site: [https://vue-navigation.onrender.com](https://vue-navigation.onrender.com/)
 
 ### Features
 * Compact navigation on scroll for an optimized user experience.
+* Highlight the current page location in menus and submenus
 * Implement smooth transition effects to provide animation for displaying and hiding
 submenus.
 * Optimize interaction behaviors for the user's mouse movement trajectory.
