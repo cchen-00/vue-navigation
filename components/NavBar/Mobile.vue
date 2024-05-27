@@ -15,7 +15,9 @@ const closeMenu = () => {
     <header
       class="py-1 flex justify-between items-center space-x-1 border-b-2 border-t-2 border-primary"
     >
-      <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" />
+      <a href="/" aria-label="Link to Home Page">
+        <img src="/logo.png" alt="Visit San Francisco Logo" width="260px" />
+      </a>
 
       <button
         class="h-[44px] border-s-2 border-primary pe-1 ps-2"
